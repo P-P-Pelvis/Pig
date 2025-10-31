@@ -25,7 +25,17 @@ struct ContentView: View {
                     .rotation3DEffect(.degrees(rotation), axis: (x: 1 , y: 1, z: 0))
                     .padding(50)
                 CustomText(text:"Turn Score: \(turnScore)")
-                CustomText(text:"Turn Score: \(gameScore)")
+                HStack{
+                    Button("Roll"){
+                        
+                    }
+                    .buttonStyle(CustomButtonStyle())
+                    Button("Hold"){
+                        
+                    }
+                    .buttonStyle(CustomButtonStyle())
+                }
+                CustomText(text:"Gurn Score: \(gameScore)")
                     Spacer()
             }
         }
@@ -41,3 +51,14 @@ struct CustomText: View {
         Text(text).font(Font.custom("Times New Roman", size: 36))
     }
 }
+struct CustomButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 50)
+            .font(Font.custom("Times New Roman", size: 24))
+            .padding()
+            .background(.red).opacity(configuration.isPressed ? 0.0 : 1.0)
+            .foregroundColor(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
+    }
